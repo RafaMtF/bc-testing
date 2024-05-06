@@ -43,7 +43,7 @@ function ModalCriar({ openModal, setOpenModal }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:3001/fornecedores", {
+    const response = await fetch("http://localhost:3001/clientes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

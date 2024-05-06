@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import ModalConf from "./ModalConf";
 
-function Table({ fornecedores }) {
+function Table({ clientes }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,24 +20,24 @@ function Table({ fornecedores }) {
           </tr>
         </thead>
         <tbody className="border-t-2 border-gray-300">
-          {fornecedores &&
-            fornecedores.map((fornecedor) => {
+          {clientes &&
+            clientes.map((cliente) => {
               return (
-                <tr key={fornecedor.id} className="grid grid-cols-5">
+                <tr key={cliente.id} className="grid grid-cols-5">
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {fornecedor.id}
+                    {cliente.id}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {fornecedor.tipo}
+                    {cliente.tipo}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {fornecedor.pessoa.nome || fornecedor.pessoa.razao_social}
+                    {cliente.pessoa.nome || cliente.pessoa.razao_social}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {fornecedor.pessoa.cpf || fornecedor.pessoa.cnpj}
+                    {cliente.pessoa.cpf || cliente.pessoa.cnpj}
                   </td>
                   <td className="flex justify-evenly p-2">
-                    <Link href={`fornecedores/${fornecedor.id}`}>
+                    <Link href={`clientes/${cliente.id}`}>
                       <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
                         Editar
                       </button>
@@ -45,7 +45,7 @@ function Table({ fornecedores }) {
                     <ModalConf
                       open={open}
                       setOpen={setOpen}
-                      idFornecedor={fornecedor.id}
+                      idCliente={cliente.id}
                     />
                     <button
                       className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
