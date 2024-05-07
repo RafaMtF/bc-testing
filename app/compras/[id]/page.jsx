@@ -17,7 +17,7 @@ function Page({ params }) {
         setCompra(data);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/fornecedores`)
