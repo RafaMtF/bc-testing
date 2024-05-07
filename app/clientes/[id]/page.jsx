@@ -8,10 +8,9 @@ function Page({ params }) {
   const [fornecedor, setFornecedor] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:3001/fornecedores/${params.id}`)
+    fetch(`http://localhost:3001/clientes/${params.id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setFornecedor(data);
       })
       .catch((error) => console.error(error));
@@ -41,7 +40,7 @@ function Page({ params }) {
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await fetch(
-      `http://localhost:3001/fornecedores/${params.id}`,
+      `http://localhost:3001/clientes/${params.id}`,
       {
         method: "PUT",
         headers: {
@@ -60,7 +59,7 @@ function Page({ params }) {
 
   return (
     <div className="p-5 overflow-auto mb-[80px]">
-      <h1 className="text-4xl font-semibold">Editar Fornecedor</h1>
+      <h1 className="text-4xl font-semibold">Editar Cliente</h1>
       <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
         {fornecedor.tipo === "PF" && (
           <>

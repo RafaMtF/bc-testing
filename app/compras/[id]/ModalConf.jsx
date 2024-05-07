@@ -1,19 +1,19 @@
 import React from "react";
 
-function ModalConf({ open, setOpen, idUsuario }) {
-  const apagarFornecedor = async () => {
+function ModalConf({ open, setOpen, idCarcaca }) {
+  const apagarCarcaca = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/usuarios/${idUsuario}`,
+        `http://localhost:3001/compras/carcacas/${idCarcaca}`,
         {
           method: "DELETE",
           redirect: "follow",
         }
       );
       if (response.ok) {
-        console.log("Fornecedor apagado com sucesso");
+        console.log("Carcaça apagada com sucesso");
       } else {
-        console.error("Falha ao apagar fornecedor");
+        console.error("Falha ao apagar carcaça");
       }
     } catch (error) {
       console.error(error);
@@ -29,14 +29,13 @@ function ModalConf({ open, setOpen, idUsuario }) {
       >
         <div className="bg-white p-5 rounded-md w-1/4">
           <h1 className="text-2xl font-semibold">Confirmação</h1>
-          <p className="mt-5">Deseja realmente apagar este fornecedor?</p>
+          <p className="mt-5">Deseja realmente apagar esta compra?</p>
           <div className="mt-5 flex justify-end">
             <button
               className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
               onClick={() => {
-                apagarFornecedor();
+                apagarCarcaca();
                 setOpen(!open);
-                window.location.reload();
               }}
             >
               Apagar

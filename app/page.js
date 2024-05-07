@@ -23,6 +23,18 @@ export default function Home() {
         >
           Usuários
         </Link>
+        <Link
+          href={`/compras`}
+          className="bg-gray-400 text-white p-2 rounded-md"
+        >
+          Compras
+        </Link>
+        <Link
+          href={`/estoque`}
+          className="bg-gray-400 text-white p-2 rounded-md"
+        >
+          Estoque
+        </Link>
       </div>
     </div>
   );

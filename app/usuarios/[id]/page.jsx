@@ -10,7 +10,6 @@ function Page({ params }) {
       .then((response) => response.json())
       .then((data) => {
         setUsuario(data);
-        console.log(data);
       })
       .catch((error) => console.error(error));
   });

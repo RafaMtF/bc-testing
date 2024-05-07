@@ -11,7 +11,6 @@ function Page({ params }) {
     fetch(`http://localhost:3001/fornecedores/${params.id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setFornecedor(data);
       })
       .catch((error) => console.error(error));
@@ -52,11 +51,8 @@ function Page({ params }) {
       }
     );
     const data = await response.json();
-    console.log(data);
     window.history.back();
   }
-
-  useEffect(() => console.log(fornecedor), [fornecedor]);
 
   return (
     <div className="p-5 overflow-auto mb-[80px]">

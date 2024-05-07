@@ -3,6 +3,7 @@ import { estados } from "../utils/estados";
 
 function ModalCriar({ openModal, setOpenModal }) {
   const [fornecedor, setFornecedor] = useState({
+    ativo: true,
     tipo: "PF",
     email: "",
     telefone: "",
@@ -39,7 +40,7 @@ function ModalCriar({ openModal, setOpenModal }) {
     } else setFornecedor({ ...fornecedor, [e.target.name]: e.target.value });
   }
 
-  // useEffect(() => console.log(fornecedor), [fornecedor]);
+  useEffect(() => console.log(fornecedor), [fornecedor]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -51,8 +52,6 @@ function ModalCriar({ openModal, setOpenModal }) {
       body: JSON.stringify(fornecedor),
       redirect: "follow",
     });
-    const data = await response.json();
-    console.log(data);
     window.location.reload();
   }
 
@@ -248,7 +247,6 @@ function ModalCriar({ openModal, setOpenModal }) {
             onClick={(e) => {
               e.preventDefault();
               setOpenModal(false);
-              window.location.reload();
             }}
             className="bg-red-500 text-white p-2 rounded-md col-span-2"
           >

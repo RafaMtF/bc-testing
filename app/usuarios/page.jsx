@@ -4,17 +4,18 @@ import React, { useEffect, useState } from "react";
 import BtnBack from "../components/BtnBack";
 import Pagination from "../components/Pagination";
 import Table from "./Table";
+import ModalCriar from "./ModalCriar";
 
 function Page() {
   const [search, setsearch] = useState("");
   const [usuarios, setUsuarios] = useState([]);
   const [page, setPage] = useState(1);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/usuarios`, )
+    fetch(`http://localhost:3001/usuarios`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setUsuarios(data);
       })
       .catch((error) => console.error(error));
@@ -37,7 +38,7 @@ function Page() {
           }}
           className="bg-green-500 text-white p-2 rounded-md col-span-2"
         >
-          Criar Fornecedor
+          Criar Usuário
         </button>
       </div>
 
@@ -46,7 +47,7 @@ function Page() {
       </div>
       <BtnBack />
       <Pagination page={page} setPage={setPage} />
-      {/* <ModalCriar openModal={openModal} setOpenModal={setOpenModal} /> */}
+      <ModalCriar openModal={openModal} setOpenModal={setOpenModal} />
     </div>
   );
 }
