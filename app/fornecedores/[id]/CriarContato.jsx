@@ -1,57 +1,67 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function CriarPesagem({ openPesagem, setOpenPesagem, idCompra }) {
-  const [pesagem, setPesagem] = useState({
-    id_compra: idCompra,
-    unidades: null,
-    peso: null,
+function CriarContato({ openContato, setOpenContato, idFornecedor }) {
+  const [contato, setContato] = useState({
+    id_fornecedor: idFornecedor,
+    nome: "",
+    celular: "",
+    cargo: "",
   });
+
+  function handleChange(e) {
+    setContato({ ...contato, [e.target.name]: e.target.value });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`http://localhost:3001/compras/${idCompra}/pesagens`, {
+    fetch(`http://localhost:3001/fornecedores/${idFornecedor}/contatos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(pesagem),
+      body: JSON.stringify(contato),
     })
       .then((response) => {
         if (response.ok) {
-          console.log("Pesagem criada com sucesso");
-          setOpenPesagem(false);
+          console.log("Contato criado com sucesso");
+          setOpenContato(false);
           window.location.reload();
         } else {
-          console.error("Falha ao criar pesagem");
+          console.error("Falha ao criar contato");
         }
       })
       .catch((error) => console.error(error));
   }
 
-  function handleChange(e) {
-    setPesagem({ ...pesagem, [e.target.name]: e.target.value });
-  }
-
   return (
-    <div className={`${openPesagem ? "" : "hidden"}`}>
+    <div className={`${openContato ? "" : "hidden"}`}>
       <div className="fixed top-0 left-0 w-full h-full bg-zinc-800/70 z-50"></div>
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 z-50 max-h-[calc(100vh-20%)] rounded-md overflow-auto">
-        <h1 className="text-2xl font-semibold">Criar Pesagem</h1>
+        <h1 className="text-2xl font-semibold">Criar Contato</h1>
         <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
           <label>
-            Unidades:
+            Nome:
             <input
-              type="number"
-              name="unidades"
+              type="text"
+              name="nome"
               className="p-2 border-2 border-gray-200 rounded-md w-full"
               onChange={handleChange}
             />
           </label>
           <label>
-            Peso:
+            Celular:
             <input
-              type="number"
-              name="peso"
+              type="text"
+              name="celular"
+              className="p-2 border-2 border-gray-200 rounded-md w-full"
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Cargo:
+            <input
+              type="text"
+              name="cargo"
               className="p-2 border-2 border-gray-200 rounded-md w-full"
               onChange={handleChange}
             />
@@ -60,7 +70,7 @@ function CriarPesagem({ openPesagem, setOpenPesagem, idCompra }) {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                setOpenPesagem(!openPesagem);
+                setOpenContato(!openContato);
               }}
               className="bg-red-500 text-white p-2 rounded-md"
             >
@@ -79,4 +89,4 @@ function CriarPesagem({ openPesagem, setOpenPesagem, idCompra }) {
   );
 }
 
-export default CriarPesagem;
+export default CriarContato;

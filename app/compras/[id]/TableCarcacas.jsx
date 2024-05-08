@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalConf from "./ModalConf";
+import ModalConfCarcaca from "./ModalConfCarcaca";
 
 function TableCarcacas({ carcacas }) {
   const [open, setOpen] = useState(false);
@@ -8,9 +8,10 @@ function TableCarcacas({ carcacas }) {
     <div>
       <table className="w-full">
         <thead>
-          <tr className="grid grid-cols-5">
+          <tr className="grid grid-cols-6">
             <th className="border-r-2 border-gray-200 p-2">ID</th>
             <th className="border-r-2 border-gray-200 p-2">Sequencial</th>
+            <th className="border-r-2 border-gray-200 p-2">Letra</th>
             <th className="border-r-2 border-gray-200 p-2">Carregado</th>
             <th className="border-r-2 border-gray-200 p-2">Peso Total</th>
             <th className="p-2">Apagar</th>
@@ -19,12 +20,15 @@ function TableCarcacas({ carcacas }) {
         <tbody className="border-t-2 border-gray-300">
           {carcacas &&
             carcacas.map((carcaca) => (
-              <tr key={carcaca.id} className="grid grid-cols-5">
+              <tr key={carcaca.id} className="grid grid-cols-6">
                 <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                   {carcaca.id}
                 </td>
                 <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                   {carcaca.sequencial}
+                </td>
+                <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
+                  {String.fromCharCode(64 + carcaca.sequencial)}
                 </td>
                 <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                   {carcaca.carregado == true ? "SIM" : "NÃO"}
@@ -39,7 +43,7 @@ function TableCarcacas({ carcacas }) {
                   >
                     Apagar
                   </button>
-                  <ModalConf
+                  <ModalConfCarcaca
                     open={open}
                     setOpen={setOpen}
                     idCarcaca={carcaca.id}

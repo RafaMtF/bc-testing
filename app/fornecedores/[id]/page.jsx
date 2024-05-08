@@ -3,9 +3,12 @@
 import BtnBack from "@/app/components/BtnBack";
 import React, { useEffect, useState } from "react";
 import { estados } from "@/app/utils/estados";
+import TableContatos from "./TableContatos";
+import CriarContato from "./CriarContato";
 
 function Page({ params }) {
   const [fornecedor, setFornecedor] = useState({});
+  const [openContatos, setOpenContatos] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3001/fornecedores/${params.id}`)
@@ -55,7 +58,7 @@ function Page({ params }) {
   }
 
   return (
-    <div className="p-5 overflow-auto mb-[80px]">
+    <div className="p-5 h-[calc(100vh-212px)] overflow-auto">
       <h1 className="text-4xl font-semibold">Editar Fornecedor</h1>
       <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
         {fornecedor.tipo === "PF" && (
@@ -233,6 +236,22 @@ function Page({ params }) {
           Salvar
         </button>
       </form>
+
+      <h1 className="text-3xl font-semibold mt-5">Contatos</h1>
+      <div className="mt-5 border-2 border-gray-300 rounded-md">
+        <TableContatos contatos={fornecedor.contatos} />
+      </div>
+      <button
+        className="bg-green-500 p-2 text-white rounded-md w-full mt-2"
+        onClick={() => setOpenContatos(!openContatos)}
+      >
+        Criar Contato
+      </button>
+      <CriarContato 
+        openContato={openContatos} 
+        setOpenContato={setOpenContatos} 
+        idFornecedor={params.id}
+      />
       <BtnBack />
     </div>
   );

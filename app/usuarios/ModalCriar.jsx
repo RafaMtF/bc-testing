@@ -30,7 +30,7 @@ function ModalCriar({ openModal, setOpenModal }) {
     <div className={`${openModal ? "" : "hidden"}`}>
       <div className="fixed top-0 left-0 w-full h-full bg-zinc-800/70 z-50"></div>
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 z-50 max-h-[calc(100vh-20%)] rounded-md overflow-auto scrollbartop">
-        <h1 className="text-2xl font-semibold">Criar Fornecedor</h1>
+        <h1 className="text-2xl font-semibold">Criar Usuário</h1>
         <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
           <label>
             Usuário:
@@ -66,6 +66,7 @@ function ModalCriar({ openModal, setOpenModal }) {
               onChange={(e) => handleChange(e)}
               className="p-2 border-2 border-gray-200 rounded-md w-full"
             >
+              <option value="">Selecione o cargo</option>
               <option value="ADMINISTRADOR">Administrador</option>
               <option value="GERENTE">Gerente</option>
             </select>
